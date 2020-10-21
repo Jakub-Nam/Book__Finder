@@ -1,0 +1,38 @@
+form {
+    .form__labels-wraper {
+        display: flex;
+        flex-direction: column;
+        width: 200px;
+        margin: 0 auto;
+        label {
+            text-align: center;
+            padding: 0.5em;
+            
+        }
+        select {
+            width: 100%;
+        }
+    }
+    
+}
+
+.book-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.book-wrapper__img {
+    display: flex;
+    justify-content: center;
+    width: 130px;
+    height: 170px;
+    background-color: black;
+}
+.book-wrapper__info {
+    h3 {
+        text-align: center;
+    }
+    figcaption {
+        text-align: center;
+    }
+}

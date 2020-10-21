@@ -1,0 +1,57 @@
+<main>
+  <form action="" [formGroup]="form">
+    <div class="form__labels-wraper">
+      <label for="title">
+        Title:
+        <input type="text" formControlName="title" name="title">
+      </label>
+      <label for="author">
+        Author:
+        <input type="text" formControlName="author" name="author">
+      </label>
+
+      <label for="language">
+        Language:
+        <select formControlName="language">
+          <option *ngFor="let lng of languagesArray" [value]="lng.code" name='language'>
+            {{ lng.name }}
+          </option>
+        </select>
+      </label>
+
+      <label for="orderBy">
+        Order by:
+        <select formControlName="orderBy">
+          <option *ngFor="let order of orders" [value]="order" name='orderBy'>
+            {{ order }}
+          </option>
+        </select>
+      </label>
+    </div>
+  </form>
+
+  <section *ngFor="let book of bookCollections">
+    <figure *ngIf='this.bookCollections'>
+      <div class="book-wrapper">
+        <div class="book-wrapper__img">
+          <img *ngIf='book.volumeInfo.imageLinks' src="{{ book.volumeInfo.imageLinks.smallThumbnail }}" alt="book-img"
+            width='130px' height='170px'>
+        </div>
+        <div class="book-wrapper__info">
+          <h3>{{ book.volumeInfo.title }}</h3>
+          <figcaption *ngIf='book.searchInfo'>{{ (book.searchInfo.textSnippet.length > 40) ? (book.searchInfo.textSnippet | slice: 0:40)+'...' : (book.searchInfo.textSnippet) }}</figcaption>
+          <!-- <figcaption>abecaaaadlo</figcaption> -->
+        </div>
+      </div>
+    </figure>
+  </section>
+
+  <span *ngIf='isBookAvailable'>No books avaible</span>
+  <div class="search-results" infiniteScroll [infiniteScrollThrottle]="2000" [infiniteScrollDistance]="0.5"
+    (scrolled)="onScroll()"></div>
+
+  <div *ngIf="isLoading" style="text-align: center;">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+
+</main>
